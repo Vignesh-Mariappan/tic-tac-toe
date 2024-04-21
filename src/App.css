@@ -1,7 +1,7 @@
 :root {
-    --root-background: ##171212;
+    --root-background: oklch(0.288229 0.022103 277.509);
     --game-grid-background: #1eb854;
-    --game-grid-hover-bg: #1eb854f5;
+    --game-grid-hover-bg: #1eb854d5;
     --game-grid-text-color: oklch(0.139553 0.027077 168.327);
     --reset-game-btn-bg: #1eb854;
     --reset-gamge-btn-text-color: oklch(0.139553 0.027077 168.327);
@@ -10,7 +10,7 @@
 
 #root {
     height: 100vh;
-    background: oklch(0.288229 0.022103 277.509);
+    background: var(--root-background);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -91,10 +91,21 @@
     visibility: visible;
 }
 
+.game-res-hide-anim {
+    animation: slideInDown .3s linear forwards;
+}
+
+.close-icon {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    cursor: pointer;
+}
+
 .cell {
     width: 100%;
     height: 100%;
-    font-size: 2rem;
+    font-size: 4rem;
     border: 2px solid #18181860;
     transition: background-color .3s ease-in;
     cursor: pointer;
@@ -113,6 +124,16 @@
 
     to {
         transform: translateY(-100%);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0%);
     }
 }
 

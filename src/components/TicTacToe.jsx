@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../App.css';
 import useTicTacToe from '../hooks/useTicTacToe';
 import { FaTrophy } from 'react-icons/fa6';
+import { IoIosCloseCircleOutline } from 'react-icons/io';
 
 function TicTacToe({ boardSize = 3 }) {
   const { board, handleCellClick, resetGame, getStatusMessage } = useTicTacToe(boardSize);
@@ -30,6 +31,8 @@ function TicTacToe({ boardSize = 3 }) {
     setGameResAnim(false);
   };
 
+  const closeGameResHandler = () => setGameResAnim(false);
+
   return (
     <div className='game' style={{ '--boardSize': boardSize }}>
       <div className='status'>
@@ -47,7 +50,8 @@ function TicTacToe({ boardSize = 3 }) {
         ))}
       </div>
 
-      <div className={`game-result ${gameResAnim && 'game-res-anim'}`}>
+      <div className={`game-result ${gameResAnim ? 'game-res-anim' : 'game-res-hide-anim'}`}>
+        <IoIosCloseCircleOutline className='close-icon' onClick={closeGameResHandler} color='red' size={'1.5rem'} />
         {(statusMsg === 'Player X wins' || statusMsg === 'Player O wins') && (
           <>
             <FaTrophy size={'4rem'} />
